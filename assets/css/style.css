@@ -1,0 +1,27 @@
+body{
+    background: #f4f7fc;
+}
+
+.card{
+    border-radius: 12px;
+}
+
+.table td{
+    vertical-align: middle;
+}
+
+.fa-pen-to-square{
+    cursor: pointer;
+}
+
+.fa-trash-can{
+    cursor: pointer;
+}
+
+.spinner{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 9999;
+}
