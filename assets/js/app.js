@@ -148,8 +148,8 @@ function addTodo(e) {
                 <td>
                     <i onclick="editTodo(this)"
                         title="Edit Todo"
-                       class="fa-solid fa-pen-to-square fa-2x text-primary
-                       data-toggle="tooltip" data-placement="top" title="Edit Button""></i>
+                       class="fa-solid fa-pen-to-square fa-2x text-primary"
+                       data-toggle="tooltip" data-placement="top" title="Edit Button"></i>
                 </td>
                 <td>
                     <i onclick="deleteTodo(this)"
