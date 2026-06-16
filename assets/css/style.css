@@ -10,18 +10,25 @@ body{
     vertical-align: middle;
 }
 
-.fa-pen-to-square{
-    cursor: pointer;
-}
-
+.fa-pen-to-square,
 .fa-trash-can{
     cursor: pointer;
+    transition: 0.3s;
 }
 
+.fa-pen-to-square:hover,
+.fa-trash-can:hover{
+    transform: scale(1.1);
+}
 .spinner{
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
     z-index: 9999;
+}
+
+.highlight-row{
+    background-color: rgb(65, 62, 62);
+   
 }

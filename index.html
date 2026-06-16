@@ -46,18 +46,26 @@
 
                             <div class="form-group">
                                 <label for="completed">Status *</label>
-                                <input type="text"
-                                    class="form-control"
-                                    id="completed"
-                                    placeholder="true / false">
-                            </div>
+                                <select name="" id="completed" class="form-control">
+                                    <option value="true">Complete</option>
+                                    <option value="false">Pending</option>
+
+                                </select>
 
                             <div class="form-group">
                                 <label for="userId">User ID *</label>
-                                <input type="number"
-                                    class="form-control"
-                                    id="userId"
-                                    placeholder="Enter User ID">
+                                <select class="form-control" id="userId">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                </select>
                             </div>
 
                             <button type="submit"
@@ -122,8 +130,13 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="./assets/js/app.js"></script>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="./assets/js/app.js"></script>
 
 </body>
 </html>

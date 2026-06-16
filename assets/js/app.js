@@ -18,8 +18,12 @@ function showAlert(msg, icon) {
     Swal.fire({
         title: msg,
         icon: icon,
-        timer: 300
+        timer: 3000
     });
+}
+
+function toolTips(){
+    $('[data-toggle="tooltip"]').tooltip();
 }
 
 function updateSerialNumbers() {
@@ -47,6 +51,7 @@ function getTodos() {
             todoArr = res;
 
             renderTodos(res.reverse());
+            toolTips();
 
         } else {
 
@@ -80,16 +85,22 @@ function renderTodos(arr) {
                 </td>
                 <td>
                     <i onclick="editTodo(this)"
-                       class="fa-solid fa-pen-to-square fa-2x text-primary"></i>
+                        title="Edit Todo"
+                       class="fa-solid fa-pen-to-square fa-2x text-primary"
+                       data-toggle="tooltip" data-placement="top" title="Edit Button"></i>
                 </td>
                 <td>
                     <i onclick="deleteTodo(this)"
-                       class="fa-solid fa-trash-can fa-2x text-danger"></i>
+                        title="Rmove Todo"
+                       class="fa-solid fa-trash-can fa-2x text-danger"
+                       data-toggle="tooltip" data-placement="top" title="Remove Button"></i>
                 </td>
             </tr>`;
     });
+    
 
     todoContainer.innerHTML = result;
+    
 }
 
 function addTodo(e) {
@@ -131,21 +142,25 @@ function addTodo(e) {
                 <td>${newTodo.title}</td>
                 <td>
                     ${newTodo.completed === 'true'
-                        ? '<i class="fa-solid fa-square-check text-success"></i> Complete'
+                        ? '<i class="fa-solid fa-square-check text-primary"></i> Complete'
                         : '<i class="fa-solid fa-spinner text-warning"></i> Pending'}
                 </td>
                 <td>
                     <i onclick="editTodo(this)"
-                       class="fa-solid fa-pen-to-square fa-2x text-primary"></i>
+                        title="Edit Todo"
+                       class="fa-solid fa-pen-to-square fa-2x text-primary
+                       data-toggle="tooltip" data-placement="top" title="Edit Button""></i>
                 </td>
                 <td>
                     <i onclick="deleteTodo(this)"
-                       class="fa-solid fa-trash-can fa-2x text-danger"></i>
+                        title="Delete Todo"
+                       class="fa-solid fa-trash-can fa-2x text-danger"
+                       data-toggle="tooltip" data-placement="top" title="Remove Button"></i>
                 </td>
             `;
 
             todoContainer.prepend(tr);
-
+            toolTips()
             todoArr.unshift(res);
 
             updateSerialNumbers();
@@ -154,7 +169,8 @@ function addTodo(e) {
 
             spinner.classList.add('d-none');
 
-            showAlert('New Todo Created..', 'success');
+            showAlert(`New Todo ${newTodo.title} Created..`, 'success');
+            
 
         } else {
 
@@ -188,6 +204,10 @@ function editTodo(ele) {
             ? 'true'
             : 'false';
 
+    todoForm.scrollIntoView({
+        behavior:"smooth",
+        block:'center'
+    })
     addBtn.classList.add('d-none');
     updateBtn.classList.remove('d-none');
 }
@@ -203,7 +223,7 @@ function updateTodo() {
     let updatedTodo = {
         userId: userIdControl.value,
         title: titleControl.value,
-        completed: completedControl.value === 'true'
+        completed: completedControl.value ==='true'
     };
 
     let xhr = new XMLHttpRequest();
@@ -228,7 +248,7 @@ function updateTodo() {
 
             row.children[3].innerHTML =
                 updatedTodo.completed
-                    ? '<i class="fa-solid fa-square-check text-success"></i> Complete'
+                    ? '<i class="fa-solid fa-square-check text-primary"></i> Complete'
                     : '<i class="fa-solid fa-spinner text-warning"></i> Pending';
 
             todoForm.reset();
@@ -239,8 +259,19 @@ function updateTodo() {
             spinner.classList.add('d-none');
 
             localStorage.removeItem('EDIT_ID');
+            
+            let updatedRow=document.getElementById(editId)
+            updatedRow.classList.add('highlight-row')
 
-            showAlert('Todo Updated Successfully', 'success');
+            updatedRow.scrollIntoView({
+                behavior:'smooth',
+                block:'center'
+            })
+
+            setTimeout(()=>{
+                updatedRow.classList.remove('highlight-row')
+            },4000)
+            showAlert('Todo Updated Successfully', 'success');  
 
         } else {
 
@@ -294,7 +325,7 @@ function deleteTodo(ele) {
 
                     spinner.classList.add('d-none');
 
-                    showAlert('Todo Deleted Successfully', 'success');
+                    showAlert(`Todo ${removeId} Deleted Successfully`, 'success');
 
                 } else {
 
